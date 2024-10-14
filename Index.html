@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pregunta interactiva</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: black;
+      color: white;
+    }
+
+    .container {
+      margin-top: 100px;
+    }
+
+    button {
+      font-size: 20px;
+      padding: 10px 20px;
+      margin: 20px;
+      cursor: pointer;
+    }
+
+    .no-btn {
+      position: absolute;
+    }
+
+    .message {
+      font-size: 24px;
+      color: #0f0;
+      text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 20px #00f, 0 0 30px #0f0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>¿eres marica ?</h1>
+    <button id="yes-btn">Sí</button>
+    <button id="no-btn" class="no-btn">No</button>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById('no-btn');
+    const yesBtn = document.getElementById('yes-btn');
+    const body = document.body;
+
+    noBtn.addEventListener('mouseover', () => {
+      const randomX = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+      const randomY = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+      noBtn.style.left = randomX + 'px';
+      noBtn.style.top = randomY + 'px';
+    });
+
+    yesBtn.addEventListener('click', () => {
+      const message = document.createElement('div');
+      message.classList.add('message');
+      message.innerText = '¡Lo sabía 😂 !';
+      body.appendChild(message);
+
+      // Repetir mensaje en todo el fondo
+      for (let i = 0; i < 50; i++) {
+        const clone = message.cloneNode(true);
+        clone.style.position = 'absolute';
+        clone.style.left = Math.random() * window.innerWidth + 'px';
+        clone.style.top = Math.random() * window.innerHeight + 'px';
+        body.appendChild(clone);
+      }
+    });
+  </script>
+</body>
+</html>
+
